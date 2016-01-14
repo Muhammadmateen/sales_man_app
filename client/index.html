@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="lib/angular-material/angular-material.css">
+    <!--<link rel="stylesheet" type="text/css" href="lib/angular-material-icons/angular-material-icons.css">-->
+
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
+    <script src="lib/angular-material-icons/angular-material-icons.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+
+
+    <script src="app.js"></script>
+
+    <script src="views/login/login.js"></script>
+    <script src="views/sign-up/sign-up.js"></script>
+
+
+</head>
+<body ng-app="app">
+
+
+<md-toolbar layout="row" layout-align="start center">
+    <ng-md-icon icon="account_circle" style="fill:white"></ng-md-icon> <b>Sale's Man App</b>
+</md-toolbar>
+
+    <a ui-sref="sign-up">Sign up</a>
+    <a ui-sref="login">Login</a>
+
+
+    <ui-view></ui-view>
+
+
+
+</body>
+</html>
+
+

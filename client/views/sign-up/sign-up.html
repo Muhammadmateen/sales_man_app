@@ -1,0 +1,123 @@
+
+
+<div>
+
+
+    <!--<form method="post" name="stdReg" layout="column" layout-align="center center">
+        <h2>Registration</h2>
+
+            <md-input-container class="md-icon-float md-block" style="width: 200px">
+                <label>Name</label>
+                <input type="text" name="Name" ng-model="ctrl.stdName" required/>
+            </md-input-container>
+
+
+            <md-input-container class="md-icon-float md-block" style="width: 200px;margin-left: 15px">
+                <label>Father Name</label>
+                <input type="text" name="fatherName" ng-model="ctrl.fatherName" required/>
+            </md-input-container>
+
+        </div>
+
+        <div layout="row">
+        <span style="color: red" ng-show="stdReg.Name.$invalid && stdReg.Name.$dirty">
+                        <span ng-show="stdReg.Name.$error.required">Name is required</span>
+        </span>
+            <span style="color: red;padding-left: 40px" ng-show="stdReg.fatherName.$invalid && stdReg.fatherName.$dirty">
+                        <span ng-show="stdReg.fatherName.$error.required">Father Name is required</span>
+            </span>
+        </div>
+
+        <md-radio-group ng-model="ctrl.institute" required layout="row"  layout-align="start center">
+            <span>Institute :</span>
+            <md-radio-button value="Sayalni Mass Traning" class="md-primary">Saylani</md-radio-button>
+            <md-radio-button value="Sir Syed" class="md-primary">Sir Syed</md-radio-button>
+        </md-radio-group>
+
+
+        <md-input-container style="width: 400px">
+            <label>Email address</label>
+            <input type="email" name="email" ng-model="ctrl.email" required/>
+        </md-input-container>
+                <span style="color: red" ng-show="stdReg.email.$invalid && stdReg.email.$dirty">
+                        <span ng-show="stdReg.email.$error.required">Email is required</span>
+                        <span ng-show="stdReg.email.$error.email">Invalid email address</span>
+                </span><br>
+
+
+
+        <md-input-container style="width: 400px">
+            <label>Password</label>
+            <input type="password" name="password" ng-model="ctrl.pass" required/>
+        </md-input-container>
+                <span style="color: red" ng-show="stdReg.password.$invalid && stdReg.password.$dirty">
+                        <span ng-show="stdReg.password.$error.required">Password is required</span>
+                </span><br>
+
+
+
+        <md-input-container style="width: 400px">
+            <label>Conatct number</label>
+            <input type="number" name="contactNo" ng-model="ctrl.contactNo" required/>
+        </md-input-container>
+                <span style="color: red" ng-show="stdReg.contactNo.$invalid && stdReg.contactNo.$dirty">
+                        <span ng-show="stdReg.contactNo.$error.required">Contact No is required</span>
+
+                </span><br>
+
+
+        <md-input-container style="width: 400px">
+            <label>Address</label>
+            <input type="text" name="address" ng-model="ctrl.address" required/>
+        </md-input-container>
+                <span style="color: red" ng-show="stdReg.address.$invalid && stdReg.address.$dirty">
+                        <span ng-show="stdReg.address.$error.required">Address is required</span>
+                </span><br><br>
+
+
+        <md-button class="md-raised md-primary" ng-click="ctrl.addStdRecord()" ng-disabled="stdReg.$invalid" style="width: 12%">Submit</md-button>
+        <span ng-show="ctrl.loader">
+            <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="40px"></md-progress-circular>
+            Wait...
+        </span>
+    </form>-->
+
+
+
+
+
+    <form name="signUp" method="post" layout="column" layout-align="center center">
+
+        <md-input-container class="md-icon-float md-block">
+            <label>First Name</label>
+            <input type="text" name="firstName" ng-model="ctrl.user.firstName" required/>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Last Name</label>
+            <input type="text" name="lastName" ng-model="ctrl.user.lastName" required/>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Email</label>
+            <input type="email" name="email" ng-model="ctrl.user.email" ng-blur="ctrl.checkEmail(ctrl.user.email)" required/>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Password</label>
+            <input type="password" name="pass" ng-model="ctrl.user.pass" required/>
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Confirm Password</label>
+            <input type="password" name="cnfrm_Pass" ng-model="ctrl.user.confirm_pass" required/>
+        </md-input-container>
+
+        <md-button class="md-raised md-primary" ng-click="ctrl.sign_up()">Sign Up</md-button>
+
+
+    </form>
+
+
+
+</div>
