@@ -86,38 +86,70 @@
 
 
 
-    <form name="signUp" method="post" layout="column" layout-align="center center">
+    <form name="signUp"  method="post" layout="column" layout-align="center center" ng-submit="ctrl.sign_up()">
 
         <md-input-container class="md-icon-float md-block">
             <label>First Name</label>
-            <input type="text" name="firstName" ng-model="ctrl.user.firstName" required/>
+            <input type="text" name="firstName" ng-model="ctrl.user.firstName" required autofocus/>
         </md-input-container>
+
+
+        <span style="color: red" ng-show="signUp.firstName.$invalid && signUp.firstName.$dirty">
+                        <span ng-show="signUp.firstName.$error.required">First Name is required</span>
+        </span>
+
+
 
         <md-input-container class="md-icon-float md-block">
             <label>Last Name</label>
             <input type="text" name="lastName" ng-model="ctrl.user.lastName" required/>
         </md-input-container>
 
-        <md-input-container class="md-icon-float md-block">
-            <label>Email</label>
-            <input type="email" name="email" ng-model="ctrl.user.email" ng-blur="ctrl.checkEmail(ctrl.user.email)" required/>
-        </md-input-container>
+        <span style="color: red" ng-show="signUp.lastName.$invalid && signUp.lastName.$dirty">
+                        <span ng-show="signUp.lastName.$error.required">Last Name is required</span>
+        </span>
+
+
+
+        <div layout="row" layout-align="center center">
+            <md-input-container class="md-icon-float md-block">
+                <label>Email</label>
+                <input type="email" name="email" ng-model="ctrl.user.email" ng-blur="ctrl.checkEmail(ctrl.user.email)" required/>
+            </md-input-container>
+            <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="40px" ng-show="ctrl.email_loader"></md-progress-circular>
+        </div>
+
+        <span style="color: red" ng-show="signUp.email.$invalid && signUp.email.$dirty">
+                        <span ng-show="signUp.email.$error.required">Email is required</span>
+                        <span ng-show="signUp.email.$error.email">Invalid email address</span>
+        </span>
+        <p style="color: red" ng-show="ctrl.email_in_used">This email address is already in use.</p>
 
         <md-input-container class="md-icon-float md-block">
             <label>Password</label>
             <input type="password" name="pass" ng-model="ctrl.user.pass" required/>
         </md-input-container>
 
+        <span style="color: red" ng-show="signUp.pass.$invalid && signUp.pass.$dirty">
+                        <span ng-show="signUp.pass.$error.required">Password is required</span>
+                </span>
+
+
+
         <md-input-container class="md-icon-float md-block">
             <label>Confirm Password</label>
-            <input type="password" name="cnfrm_Pass" ng-model="ctrl.user.confirm_pass" required/>
+            <input type="password" name="cnfrm_Pass" ng-model="ctrl.user.confirm_pass" valid-password-c required/>
         </md-input-container>
-
-        <md-button class="md-raised md-primary" ng-click="ctrl.sign_up()">Sign Up</md-button>
+        <span style="color: red" ng-show="signUp.cnfrm_Pass.$invalid && signUp.cnfrm_Pass.$dirty">
+                        <span ng-show="signUp.cnfrm_Pass.$error.required">Confirm Password is required</span>
+                </span>
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="signUp.$invalid">Sign Up</md-button>
 
 
     </form>
 
+
+    <md-progress-circular class="md-hue-2" md-mode="indeterminate" md-diameter="100px" ng-show="ctrl.loader"></md-progress-circular>
 
 
 </div>

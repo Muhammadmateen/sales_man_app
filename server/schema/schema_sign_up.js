@@ -1,13 +1,7 @@
 /**
  * Created by Mateen Bhai on 1/14/2016.
  */
-
-
-
-
-                            /* Sales Man Schema */
-
-
+/* Sales Man Schema */
 /*var mongoose = requires('mongoose');
 var connection = mongoose.connect("mongodb://localhost/sales_man");
 
@@ -19,18 +13,15 @@ var schema = new mongoose.schema({
     pass:   {type:String,required:true},
     date: {type:Date,default: Date.now}
 });
-
-
-
-
 exports.sign_up_schema = mongoose.model("users",schema);*/
 
+    //Modules
 var bcrypt = require("bcrypt-nodejs");
 var mongoose = require("mongoose");
 var connection = mongoose.connect("mongodb://localhost/sales_man");
 
 
-
+        /* Sales Man Schema */
 var schema = mongoose.Schema({
     firstName : {type:String,required:true},
     lastName : {type:String,required:true},
@@ -41,14 +32,13 @@ var schema = mongoose.Schema({
     },
     pass : {type:String,required:true},
     date : {type:Date,default:Date.now},
+    verified:{type:Boolean,default:false},
     firebase_uid : {type:String,required:true,unique:true}
 });
 
-
+//Using to bcrypt the password
 var SALT_FACTOR = 10;
-
 var noop = function() {};
-
 
 schema.pre("save", function(done) {
     var user = this;
@@ -72,8 +62,7 @@ schema.pre("save", function(done) {
 
 
 
-
-
+//Export the schema
 exports.sign_up_schema = mongoose.model("users",schema);
 
 

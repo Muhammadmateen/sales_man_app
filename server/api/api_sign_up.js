@@ -3,25 +3,18 @@
  */
 
 
-
 var express = require("express");
 var Firebase = require("firebase");
-
-
-
+var nodemailer = require('nodemailer');
+var path = require("path");
 
         /*Sign up Schema require */
 var schema = require("../schema/schema_sign_up.js")
 var sign_up_schema = schema.sign_up_schema;
 
-
-
         /*Firebase ref set*/
 var firebase_ref = new Firebase("https://salesmanmanagement.firebaseio.com/");
 var api = express.Router();
-
-
-
 
 
 
@@ -38,15 +31,9 @@ var remove_fire_user = "402";
 var error_romove_user = "804";
 
 
-
-
-
-
-
-
+//Api of Signup
 api.post("/sign_up_user",function(req,res)
 {
-
     //Firebase user registration function
     firebase_ref.createUser({
         email: req.body.email,
@@ -86,6 +73,9 @@ api.post("/sign_up_user",function(req,res)
                 }
                 else
                 {
+                    sendMail_func(req.body.email,req.body.pass);
+
+                    console.log(success._id);
                     res.send(confirm_code);
                 }
             })
@@ -96,13 +86,51 @@ api.post("/sign_up_user",function(req,res)
 
 
 
+//Authnetication for sent an email to any one account
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'gayyasabcd@gmail.com',
+        pass:   'abcdef123456'
 
+        //meanstack02@gmial.com
+        //meanstack
+    }
+});
+
+//Email send function
+function sendMail_func(email,pass)
+{
+    var mailOptions = {
+        to: email,
+        subject: 'Sales Man Verification Email',
+        html: "<h1 style='color: blue'>Welcome To Sale's Man</h1><br><br><b>Please verify your Email Click here : --------- </b>"
+    };
+
+    /*html: "<h1 style='color: blue'>Welcome To Sale's Man</h1><br><br><b>Email : "+email+"<br><br><b>Password : "+pass+"</b>"*/
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log("Email Not sent ",error);
+            //res.json({yo: 'error'});
+        }else{
+            console.log("Email sent: " + info.response);
+            //res.json({yo: info.response});
+        };
+    });
+};
+
+
+
+
+//Api Check email address in database is already exist or not
 api.post("/check_email",function(req,res)
 {
     sign_up_schema.findOne({email:req.body.email},{_id:1},function(err,success)
     {
         if (err)
         {
+            console.log("Api Error :",success);
             res.send(err);
         }
         else
@@ -121,7 +149,5 @@ api.post("/check_email",function(req,res)
 })
 
 
-
-
-
+//Export the Api
 module.exports = api;
