@@ -252,10 +252,10 @@ export class Transition implements IHookRegistry {
   /**
    * Get the [[ViewConfig]]s associated with this Transition
    *
-   * Each state can define one or more views (template/controller), which are encapsulated as `ViewConfig` objects.
+   * Each state can define one or more components (template/controller), which are encapsulated as `ViewConfig` objects.
    * This method fetches the `ViewConfigs` for a given path in the Transition (e.g., "to" or "entering").
    *
-   * @param pathname the name of the path to fetch views for:
+   * @param pathname the name of the path to fetch components for:
    *   (`'to'`, `'from'`, `'entering'`, `'exiting'`, `'retained'`)
    * @param state If provided, only returns the `ViewConfig`s for a single state in the path
    *

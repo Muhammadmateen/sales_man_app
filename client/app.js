@@ -11,7 +11,7 @@ app.config(function($stateProvider,$urlRouterProvider)
 
     $stateProvider.state('login',{
             url:'/login',
-            templateUrl:'views/login/login.html',
+            templateUrl:'components/login/login.html',
             controller:'login_controller',
             controllerAs:'ctrl'
         })
@@ -19,15 +19,21 @@ app.config(function($stateProvider,$urlRouterProvider)
 
         .state('sign-up',{
             url:'/sign-up',
-            templateUrl:'./views/sign-up/sign-up.html',
+            templateUrl:'components/sign-up/sign-up.html',
             controller:'sign_up_controller',
             controllerAs:'ctrl'
         })
 
+        .state('verify-account',{
+            url:'/verify-account/:id',
+            templateUrl:'components/verified-account/verified-account.html',
+            controller:'verify_account_controller',
+            controllerAs:'ctrl'
+        })
 
         .state('404',{
             url:'/404',
-            templateUrl:'./client/views/404/404.html',
+            templateUrl:'./client/components/404/404.html',
         })
 
         $urlRouterProvider.otherwise('sign-up');

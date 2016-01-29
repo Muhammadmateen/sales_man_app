@@ -1,6 +1,4 @@
-/**
- * Created by Mateen Bhai on 1/14/2016.
- */
+
 /* Sales Man Schema */
 /*var mongoose = requires('mongoose');
 var connection = mongoose.connect("mongodb://localhost/sales_man");
@@ -60,6 +58,13 @@ schema.pre("save", function(done) {
     });
 });
 
+
+
+schema.methods.checkPassword = function(guess, done) {
+    bcrypt.compare(guess, this.password, function(err, isMatch) {
+        done(err, isMatch);
+    });
+}
 
 
 //Export the schema

@@ -41,7 +41,7 @@ describe('uiStateRef', function() {
       "click", // typeArg of type DOMString, Specifies the event type.
       true, // canBubbleArg of type boolean, Specifies whether or not the event can bubble.
       true, // cancelableArg of type boolean, Specifies whether or not the event's default action can be prevented.
-      undefined, // viewArg of type views::AbstractView, Specifies the Event's AbstractView.
+      undefined, // viewArg of type components::AbstractView, Specifies the Event's AbstractView.
       0, // detailArg of type long, Specifies the Event's mouse click count.
       0, // screenXArg of type long, Specifies the Event's screen x coordinate
       0, // screenYArg of type long, Specifies the Event's screen y coordinate

@@ -170,7 +170,7 @@ function $ViewDirective(   $view,   $animate,   $uiViewScroll,   $interpolate,  
           id: directive.count++,                                   // Global sequential ID for ui-view tags added to DOM
           name: name,                                              // ui-view name (<div ui-view="name"></div>
           fqn: inherited.name ? inherited.fqn + "." + name : name, // fully qualified name, describes location in DOM
-          config: null,                                            // The ViewConfig loaded (from a state.views definition)
+          config: null,                                            // The ViewConfig loaded (from a state.components definition)
           configUpdated: configUpdatedCallback,                    // Called when the matching ViewConfig changes
           get creationContext() { return inherited.context; }      // The context in which this ui-view "tag" was created
         };

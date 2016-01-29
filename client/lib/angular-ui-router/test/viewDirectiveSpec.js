@@ -158,7 +158,7 @@ describe('uiView', function () {
       expect(elem.find('ui-view').text()).toBe(bState.template);
     }));
 
-    it('should handle NOT nested ui-views', inject(function ($state, $q) {
+    it('should handle NOT nested ui-components', inject(function ($state, $q) {
       elem.append($compile('<div><ui-view name="dview1" class="dview1"></ui-view><ui-view name="dview2" class="dview2"></ui-view></div>')(scope));
       expect(elem.find('ui-view').eq(0).text()).toBe('');
       expect(elem.find('ui-view').eq(1).text()).toBe('');
@@ -170,7 +170,7 @@ describe('uiView', function () {
       expect(elem.find('ui-view').eq(1).text()).toBe(dState.views.dview2.template);
     }));
 
-    it('should handle nested ui-views (testing two levels deep)', inject(function ($state, $q) {
+    it('should handle nested ui-components (testing two levels deep)', inject(function ($state, $q) {
       $compile(elem.append('<div><ui-view></ui-view></div>'))(scope);
       expect(elem.find('ui-view').text()).toBe('');
 
@@ -366,36 +366,36 @@ describe('uiView', function () {
       if (['1.0.8', '1.1.5'].indexOf(angular.version.full) !== -1) return;
 
       it ('should have correct number of uiViews', inject(function($state, $q, $compile) {
-        elem.append($compile('<div><ui-view ng-repeat="view in views" name="{{view}}"></ui-view></div>')(scope));
+        elem.append($compile('<div><ui-view ng-repeat="view in components" name="{{view}}"></ui-view></div>')(scope));
 
-        // Should be no ui-views in DOM
+        // Should be no ui-components in DOM
         expect(elem.find('ui-view').length).toBe(0);
 
         // Lets add 3
         scope.views = ['view1', 'view2', 'view3'];
         scope.$digest();
 
-        // Should be 3 ui-views in the DOM
+        // Should be 3 ui-components in the DOM
         expect(elem.find('ui-view').length).toBe(scope.views.length);
 
         // Lets add one more - yay two-way binding
         scope.views.push('view4');
         scope.$digest();
 
-        // Should have 4 ui-views
+        // Should have 4 ui-components
         expect(elem.find('ui-view').length).toBe(scope.views.length);
 
-        // Lets remove 2 ui-views from the DOM
+        // Lets remove 2 ui-components from the DOM
         scope.views.pop();
         scope.views.pop();
         scope.$digest();
 
-        // Should have 2 ui-views
+        // Should have 2 ui-components
         expect(elem.find('ui-view').length).toBe(scope.views.length);
       }));
 
       it ('should populate each view with content', inject(function($state, $q, $compile) {
-        elem.append($compile('<div><ui-view ng-repeat="view in views" name="{{view}}">defaultcontent</ui-view></div>')(scope));
+        elem.append($compile('<div><ui-view ng-repeat="view in components" name="{{view}}">defaultcontent</ui-view></div>')(scope));
 
         $state.transitionTo(lState);
         $q.flush();
@@ -423,7 +423,7 @@ describe('uiView', function () {
       }));
 
       it ('should interpolate ui-view names', inject(function($state, $q, $compile) {
-        elem.append($compile('<div ng-repeat="view in views">' +
+        elem.append($compile('<div ng-repeat="view in components">' +
           '<ui-view name="view{{$index + 1}}">hallo</ui-view>' +
           '</div>')(scope));
 

@@ -10,7 +10,7 @@ import {UIViewData, ViewContext} from "./interface";
 import {ResolveInjector} from "../resolve/module";
 
 /**
- * Given a raw view name from a views: config, returns a normalized target viewName and contextAnchor
+ * Given a raw view name from a components: config, returns a normalized target viewName and contextAnchor
  */
 function normalizeUiViewTarget(rawViewName = "") {
   // TODO: Validate incoming view name with a regexp to allow:
@@ -270,7 +270,7 @@ function $View(   $rootScope,   $templateFactory,   $q,   $timeout) {
     };
 
     const configureUiView = ([uiView, viewConfig]) => {
-      // If a parent ui-view is reconfigured, it could destroy child ui-views.
+      // If a parent ui-view is reconfigured, it could destroy child ui-components.
       // Before configuring a child ui-view, make sure it's still in the active uiViews array.
       if (uiViews.indexOf(uiView) !== -1)
         uiView.configUpdated(viewConfig);
@@ -309,14 +309,14 @@ function $View(   $rootScope,   $templateFactory,   $q,   $timeout) {
   };
 
   /**
-   * Returns the list of views currently available on the page, by fully-qualified name.
+   * Returns the list of components currently available on the page, by fully-qualified name.
    *
    * @return {Array} Returns an array of fully-qualified view names.
    */
   this.available = () => uiViews.map(prop("fqn"));
 
   /**
-   * Returns the list of views on the page containing loaded content.
+   * Returns the list of components on the page containing loaded content.
    *
    * @return {Array} Returns an array of fully-qualified view names.
    */

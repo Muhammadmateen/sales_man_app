@@ -1,0 +1,42 @@
+
+
+
+<div>
+
+
+    <h2>Login Form</h2>
+
+    <form ng-submit="ctrl.login_auth()" name="login">
+
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Email</label>
+            <input type="email" name="email" ng-model="ctrl.user.email" required autofocus/>
+        </md-input-container>
+
+
+        <span style="color: red" ng-show="login.email.$invalid && login.email.$dirty">
+                        <span ng-show="login.email.$error.required">Email address is required</span>
+                        <span ng-show="login.email.$error.email">Invalid Email address</span>
+        </span>
+
+
+
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Password</label>
+            <input type="password" name="pass" ng-model="ctrl.user.pass" required autofocus/>
+        </md-input-container>
+
+
+        <span style="color: red" ng-show="login.pass.$invalid && login.pass.$dirty">
+                        <span ng-show="login.pass.$error.required">Password is required</span>
+        </span>
+
+        <br>
+
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="login.$invalid">Login</md-button>
+
+    </form>
+
+</div>

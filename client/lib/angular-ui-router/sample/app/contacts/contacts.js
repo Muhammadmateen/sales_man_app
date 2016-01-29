@@ -41,7 +41,7 @@ angular.module('uiRouterSample.contacts', [
             function (  $scope,   $state,   contacts,   utils) {
 
               // Add a 'contacts' field in this abstract parent's scope, so that all
-              // child state views can access it in their scopes. Please note: scope
+              // child state components can access it in their scopes. Please note: scope
               // inheritance is not due to nesting of states, but rather choosing to
               // nest the templates of those states. It's normal scope inheritance.
               $scope.contacts = contacts;
@@ -100,11 +100,11 @@ angular.module('uiRouterSample.contacts', [
 
           // If there is more than a single ui-view in the parent template, or you would
           // like to target a ui-view from even higher up the state tree, you can use the
-          // views object to configure multiple views. Each view can get its own template,
+          // components object to configure multiple components. Each view can get its own template,
           // controller, and resolve data.
 
           // View names can be relative or absolute. Relative view names do not use an '@'
-          // symbol. They always refer to views within this state's parent template.
+          // symbol. They always refer to components within this state's parent template.
           // Absolute view names use a '@' symbol to distinguish the view and the state.
           // So 'foo@bar' means the ui-view named 'foo' within the 'bar' state's template.
           views: {

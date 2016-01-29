@@ -11,6 +11,7 @@ var morgan = require("morgan");
 /*Api requires path of sign_up Api*/
 var signUp_api = require("./api/api_sign_up.js");
 var login_api = require("./api/api_login.js");
+var verify_account_api = require("./api/api_verify_account.js");
 
 //initialize the express
 var app = express();
@@ -34,6 +35,9 @@ app.post('/check_email',signUp_api);
 
 //Post request for authenticating email and password
 app.post('/login',login_api);
+
+
+app.post('/verify_account',verify_account_api);
 
 
 

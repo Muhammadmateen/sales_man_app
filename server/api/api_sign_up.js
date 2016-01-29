@@ -73,7 +73,7 @@ api.post("/sign_up_user",function(req,res)
                 }
                 else
                 {
-                    sendMail_func(req.body.email,req.body.pass);
+                    sendMail_func(req.body.email,success._id);
 
                     console.log(success._id);
                     res.send(confirm_code);
@@ -99,12 +99,13 @@ var transporter = nodemailer.createTransport({
 });
 
 //Email send function
-function sendMail_func(email,pass)
+function sendMail_func(email,id)
 {
+    var verifyUrl = "http://localhost:3000/#/verify-account/"+id;
     var mailOptions = {
         to: email,
         subject: 'Sales Man Verification Email',
-        html: "<h1 style='color: blue'>Welcome To Sale's Man</h1><br><br><b>Please verify your Email Click here : --------- </b>"
+        html: "<h1 style='color: blue'>Welcome To Sale's Man</h1><br><br><b>Please verify your Email Click here : "+verifyUrl+"</b>"
     };
 
     /*html: "<h1 style='color: blue'>Welcome To Sale's Man</h1><br><br><b>Email : "+email+"<br><br><b>Password : "+pass+"</b>"*/

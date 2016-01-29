@@ -25,7 +25,7 @@ import {ResolveHooks} from "./resolveHooks";
  *
  * * Registers a handler to update global $state data such as "active transitions" and "current state/params"
  *
- * * Registers view hooks, which maintain the list of active view configs and sync with/update the ui-views
+ * * Registers view hooks, which maintain the list of active view configs and sync with/update the ui-components
  *
  * * Registers onEnter/onRetain/onExit hooks which delegate to the state's hooks of the same name, at the appropriate time
  *
