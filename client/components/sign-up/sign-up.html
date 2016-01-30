@@ -86,7 +86,7 @@
 
 
 
-    <form name="signUp"  method="post" layout="column" layout-align="center center" ng-submit="ctrl.sign_up()">
+    <form name="signUp"  method="post" layout="column" layout-align="center center" ng-submit="ctrl.sign_up($event)">
 
         <md-input-container class="md-icon-float md-block">
             <label>First Name</label>
@@ -123,7 +123,7 @@
                         <span ng-show="signUp.email.$error.required">Email is required</span>
                         <span ng-show="signUp.email.$error.email">Invalid email address</span>
         </span>
-        <p style="color: red" ng-show="ctrl.email_in_used">This email address is already in use.</p>
+        <p style="color: red" ng-show="ctrl.email_in_used">This email address is already exist. Please use another email address</p>
 
         <md-input-container class="md-icon-float md-block">
             <label>Password</label>
@@ -132,18 +132,20 @@
 
         <span style="color: red" ng-show="signUp.pass.$invalid && signUp.pass.$dirty">
                         <span ng-show="signUp.pass.$error.required">Password is required</span>
-                </span>
+        </span>
 
 
 
         <md-input-container class="md-icon-float md-block">
             <label>Confirm Password</label>
-            <input type="password" name="cnfrm_Pass" ng-model="ctrl.user.confirm_pass" valid-password-c required/>
+            <input type="password" name="cnfrm_Pass" ng-model="ctrl.user.confirm_pass" required/>
         </md-input-container>
         <span style="color: red" ng-show="signUp.cnfrm_Pass.$invalid && signUp.cnfrm_Pass.$dirty">
                         <span ng-show="signUp.cnfrm_Pass.$error.required">Confirm Password is required</span>
-                </span>
-        <md-button type="submit" class="md-raised md-primary" ng-disabled="signUp.$invalid">Sign Up</md-button>
+        </span>
+
+
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="signUp.$invalid || ctrl.email_in_used">Sign Up</md-button>
 
 
     </form>

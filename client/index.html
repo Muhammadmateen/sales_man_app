@@ -21,8 +21,15 @@
 
     <script src="components/login/login.js"></script>
     <script src="components/sign-up/sign-up.js"></script>
-    <script src="services/md_toast.js"></script>
+    <script src="components/dashboard/dashboard.js"></script>
     <script src="components/verified-account/verified-account.js"></script>
+
+    <!--Services-->
+    <script src="services/md_toast.js"></script>
+    <script src="services/alert_dialog.js"></script>
+
+    <!--Custom directives-->
+    <script src="./directives/confirm_pass.js"></script>
 
 
 </head>
@@ -35,10 +42,8 @@
 
     <a ui-sref="sign-up">Sign up</a>
     <a ui-sref="login">Login</a>
+    <a ui-sref="dashboard">Dashboard</a>
 
-   <!-- <input type="text" ng-model="aa.bb">
-        {{aa.bb}}-->
-   <!-- <a ui-sref='verify-account({id:"{{aa.cc}}"})'>Verify Account</a>-->
 
 
     <ui-view></ui-view>

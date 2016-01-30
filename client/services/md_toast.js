@@ -6,7 +6,7 @@
 (function ()
 {
     angular.module('app')
-        .factory('toast_serice',function($mdToast)
+        .factory('toast_service',function($mdToast)
         {
             var obj = {};
             var _self = this;

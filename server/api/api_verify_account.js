@@ -18,10 +18,13 @@
      {
          if(data)
          {
+             console.log(req.body.id);
+             console.log("Data :",data);
              res.send(data);
          }
          else
          {
+             console.log("Error :",err);
              res.send(err);
          }
      })

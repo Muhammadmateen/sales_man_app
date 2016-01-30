@@ -6,11 +6,11 @@
 
 angular.module('app')
 
-    .controller('sign_up_controller',['$http','$state',signup_ctrl_func])
+    .controller('sign_up_controller',['$http','$state','alert_dialog_service','toast_service',signup_ctrl_func])
 
 
     //Signup controller function
-    function signup_ctrl_func($http,$state)
+    function signup_ctrl_func($http,$state,alert_dialog_service,toast_service,coirmPass)
     {
         var _self = this;
         _self.email_loader = false;
@@ -18,8 +18,13 @@ angular.module('app')
         _self.loader = false;
 
 
+
+        var title = "Successfully Register!";
+        var message = "Please check your email and verify your account.";
+        var btnVal = "OK";
+
         //Sale's man Sign up function
-        _self.sign_up =   function()
+        _self.sign_up =   function(ev)
         {
 
 
@@ -32,17 +37,16 @@ angular.module('app')
                     switch (result.data)
                     {
                         case '200':
-                            console.log("Registeration done");
-                            alert("Please check your email");
+                            alert_dialog_service.showDialog(ev,title,message,btnVal);
                             break;
                         case '1100':
-                            console.log("Email id already exist");
+                            //console.log("Email id already exist");
                             break;
                         case '402':
-                            console.log("User removed from firebase successfully");
+                            //console.log("User removed from firebase successfully");
                             break;
                         case '804':
-                            console.log("User not removed from firebase successfully");
+                            //console.log("User not removed from firebase successfully");
                             break;
                     }
                     $state.go($state.current,[],{reload:true});
@@ -50,14 +54,16 @@ angular.module('app')
                 },function(err)
                 {
                     _self.loader = false;
-                    alert("Request Not send on server");
+                    toast_service.showSimpleToast(err);
+                    //alert("Request Not send on server");
                     console.log(err);
                     _self.user = "";
                 })
             }
             else
             {
-                console.log("function not call first enter valid email address");
+                toast_service.showSimpleToast("Please enter valid email address");
+                //console.log("function not call first enter valid email address");
             }
 
         };
@@ -76,22 +82,24 @@ angular.module('app')
                     switch (result.data)
                     {
                         case '200':
-                            console.log("you can create account with this email");
+                            //console.log("you can create account with this email");
                             _self.email_in_used = false;
                             break;
                         case '1100':
-                            console.log("Email id already exist");
+                            //console.log("Email id already exist");
                             _self.email_in_used = true;
                             break;
                         default :
-                            console.log("Mongo Error :",result);
+                            toast_service.showSimpleToast(result);
+                            //console.log("Mongo Error :",result);
 
                     }
 
                 },function(err)
                 {
                     _self.email_loader = false;
-                    console.log("Request not send on server : ",err);
+                    toast_service.showSimpleToast(err);
+                    //console.log("Request not send on server : ",err);
                 });
             }
         }
@@ -99,3 +107,9 @@ angular.module('app')
     };
 
 
+/*
+var title = "Successfully Register!";
+var message = "Please check your email and verify your account.";
+var btnVal = "OK";
+var ev = "$event";
+alert_dialog_service.showDialog(ev,title,message,btnVal)*/
